@@ -17,3 +17,11 @@
 输出例子1:
 3
 """
+######
+# str_1 = input()
+# str_2 = input()
+str_1 = '5 2'
+str_2 = '0 1 2 3'
+city_num = int(str_1.split(' ')[0])  # 城市数目
+look_num = int(str_1.split(' ')[1])  # 可以行动的次数
+print(city_num, look_num)
