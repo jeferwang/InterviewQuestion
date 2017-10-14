@@ -19,12 +19,23 @@ google
 输出例子1:
 2
 2
+
+
+# 测试用的字符串
+# zgtklhfzomzjckwmluvivvcmhjrwkuvcjrxojobpdedpamdshcwwsetfbacvonecrdvugeibglvhxuymjvoryqjwullvzglqazxrdmczyvbgakjagttrezmvrlptiwoqkrtxuroeqmryzsgokopxxdpbejmtwvpnaqrgqladdszhdwxfckmewhdvihgvacueqhvwvjxoitlpfrckxkuksaqzjpwgoldyhugsacflcdqhifldoaphgdbhaciixouavqxwlghadmfortqacbffqzocinvuqpjthgekunjsstukeiffjipzzabkuiueqnjgkuiojwbjzfynafnlcaryygqjfixaoeowhkxkbsnpsvnbxuywfxbnuoemxynbtgkqtjvzqikbafjnpbeirxxrohhnjqrbqqzercqcrcswojyylunuevtdhamlkzqnjrzibwckbkiygysuaxpjrgjmurrohkhvjpmwmmtpcszpihcntyivrjplhyrqftghglkvqeidyhtmrlcljngeyaefxnywpfsualufjwnffyqnpitgkkyrbwccqggycrvoocbwsdbftkigrkcbojuwwctknzzmvhbhbfzrqwzllulbabztqnznkqdyoqnrxhwavqhzyzvmmmphzxbikpharseywpfsqyybkynwbdrgfsaxduxojcdqcjuaywzbvdjgjqtoffasiuhvxcaockebkuxpiomqmtvsqhnyxfjceqevqvnapbk
+# 答案516
+
 """
 
 import sys
 
 
 def maxlcp(strs):
+	"""
+	抄的别人的
+	:param strs:
+	:return:
+	"""
 	if strs is None or len(strs) == 0:
 		return 0
 	lens = len(strs)
@@ -42,10 +53,33 @@ def maxlcp(strs):
 	return dp[lens - 1]
 
 
+def lcp(_line):
+	"""
+	自己写的
+	:param _line:
+	:return:
+	"""
+	_len = len(_line)
+	if _line is None or _len == 0:  # 处理特殊值
+		return 0
+	dp = [[0] * (_len + 1) for i in range(_len + 1)]  # 动态规划
+	for i in range(_len):  # 遍历求字符串与逆序的最大公共子序列
+		for j in range(_len):
+			if _line[i] == _line[_len - 1 - j]:
+				dp[i + 1][j + 1] = dp[i][j] + 1
+			else:
+				dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1])
+	return dp[_len][_len]
+
+
 if __name__ == '__main__':
 	while True:
-		line = sys.stdin.readline().strip()
-		if not line:
+		_line = sys.stdin.readline().strip()
+		if not _line:
 			break
-		maxLcp = maxlcp(line)
-		print(len(line) - maxLcp)
+		_res = lcp(_line)
+		print(len(_line) - _res)
+
+
+
+# zgtklhfzomzjckwmluvivvcmhjrwkuvcjrxojobpdedpamdshcwwsetfbacvonecrdvugeibglvhxuymjvoryqjwullvzglqazxrdmczyvbgakjagttrezmvrlptiwoqkrtxuroeqmryzsgokopxxdpbejmtwvpnaqrgqladdszhdwxfckmewhdvihgvacueqhvwvjxoitlpfrckxkuksaqzjpwgoldyhugsacflcdqhifldoaphgdbhaciixouavqxwlghadmfortqacbffqzocinvuqpjthgekunjsstukeiffjipzzabkuiueqnjgkuiojwbjzfynafnlcaryygqjfixaoeowhkxkbsnpsvnbxuywfxbnuoemxynbtgkqtjvzqikbafjnpbeirxxrohhnjqrbqqzercqcrcswojyylunuevtdhamlkzqnjrzibwckbkiygysuaxpjrgjmurrohkhvjpmwmmtpcszpihcntyivrjplhyrqftghglkvqeidyhtmrlcljngeyaefxnywpfsualufjwnffyqnpitgkkyrbwccqggycrvoocbwsdbftkigrkcbojuwwctknzzmvhbhbfzrqwzllulbabztqnznkqdyoqnrxhwavqhzyzvmmmphzxbikpharseywpfsqyybkynwbdrgfsaxduxojcdqcjuaywzbvdjgjqtoffasiuhvxcaockebkuxpiomqmtvsqhnyxfjceqevqvnapbk
