@@ -21,3 +21,21 @@ geohash编码：geohash常用于将二维的经纬度转换为字符串，分为
 输出例子1:
 111100
 """
+
+import math
+
+num = int(input())
+code = []  # 存储输出编码
+count = 6  # 编码精度
+start = -90  # 区间开始
+end = 90  # 区间结束
+for i in range(count):
+	bet = math.floor((start + end) / 2)  # 二分向下取整
+	if num >= bet:  # 中间值取右
+		start = bet
+		code.append('1')
+	else:
+		end = bet
+		code.append('0')
+
+print(''.join(code))
