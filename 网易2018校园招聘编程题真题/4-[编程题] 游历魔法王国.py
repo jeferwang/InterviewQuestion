@@ -20,17 +20,17 @@
 
 
 def solve(city_num, step_num, cities):
-	max_len = 0
-	dp = [0]*city_num
-	for i in range(city_num-1):
-		dp[i + 1] = dp[cities[i]] + 1
-		max_len = max(max_len, dp[i + 1])
-	# print(dp)
-	valid_path = min(max_len, step_num)
-	print(int(min(city_num, 1 + valid_path + (step_num - valid_path) / 2)))
+    max_len = 0
+    dp = [0] * city_num
+    for i in range(city_num - 1):
+        dp[i + 1] = dp[cities[i]] + 1
+        max_len = max(max_len, dp[i + 1])
+    # print(dp)
+    valid_path = min(max_len, step_num)
+    print(int(min(city_num, 1 + valid_path + (step_num - valid_path) / 2)))
 
 
 if __name__ == '__main__':
-	(city_num, step_num) = (int(i) for i in input().strip().split(' '))
-	cities = [int(i) for i in input().strip().split(' ')]
-	solve(city_num, step_num, cities)
+    (city_num, step_num) = (int(i) for i in input().strip().split(' '))
+    cities = [int(i) for i in input().strip().split(' ')]
+    solve(city_num, step_num, cities)
